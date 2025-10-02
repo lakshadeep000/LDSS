@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechSolutions Enterprise - Innovative Technology Solutions</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <h2>TechSolutions Enterprise</h2>
+                <p class="brand-tagline">Innovative Technology Solutions Across All Sectors</p>
+            </div>
+            <div class="navbar-menu">
+                <a href="#home" class="nav-link active" onclick="showSection('home')">Home</a>
+                <div class="nav-dropdown">
+                    <a href="#products" class="nav-link">Products ▼</a>
+                    <div class="dropdown-content">
+                        <a href="#domestic" onclick="showSection('domestic')">Domestic</a>
+                        <a href="#commercial" onclick="showSection('commercial')">Commercial</a>
+                        <a href="#industrial" onclick="showSection('industrial')">Industrial</a>
+                    </div>
+                </div>
+                <a href="#appointments" class="nav-link" onclick="showSection('appointments')">Appointments</a>
+                <a href="#ai-assistant" class="nav-link" onclick="showSection('ai-assistant')">AI Assistant</a>
+                <a href="#contact" class="nav-link" onclick="showSection('contact')">Contact</a>
+                <button class="btn btn--primary login-btn" onclick="openLoginModal()">Login</button>
+                <button class="btn btn--secondary logout-btn hidden" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="section active">
+        <div class="container">
+            <!-- Hero Section -->
+            <div class="hero">
+                <h1>Leading provider of technology solutions for domestic, commercial, and industrial applications</h1>
+                <p class="hero-subtitle">With 15+ years of experience, we deliver innovative solutions across all sectors</p>
+                <div class="hero-actions">
+                    <button class="btn btn--primary btn--lg" onclick="showSection('appointments')">Book Consultation</button>
+                    <button class="btn btn--outline btn--lg" onclick="showSection('domestic')">Explore Products</button>
+                </div>
+            </div>
+
+            <!-- Product Tiers Overview -->
+            <div class="tiers-section">
+                <h2>Our Solutions</h2>
+                <div class="tier-cards">
+                    <div class="tier-card" style="background: var(--color-bg-1);" onclick="showSection('domestic')">
+                        <div class="tier-icon">🏠</div>
+                        <h3>Domestic Products</h3>
+                        <p>Home automation, security systems, smart devices for modern living</p>
+                        <ul class="tier-features">
+                            <li>Smart Home Hubs</li>
+                            <li>Security Camera Systems</li>
+                            <li>Home Automation</li>
+                        </ul>
+                        <span class="tier-arrow">→</span>
+                    </div>
+                    <div class="tier-card" style="background: var(--color-bg-2);" onclick="showSection('commercial')">
+                        <div class="tier-icon">🏢</div>
+                        <h3>Commercial Products</h3>
+                        <p>Office solutions, networking, POS systems for business growth</p>
+                        <ul class="tier-features">
+                            <li>Enterprise WiFi Solutions</li>
+                            <li>Retail Management Suites</li>
+                            <li>Office Automation</li>
+                        </ul>
+                        <span class="tier-arrow">→</span>
+                    </div>
+                    <div class="tier-card" style="background: var(--color-bg-3);" onclick="showSection('industrial')">
+                        <div class="tier-icon">🏭</div>
+                        <h3>Industrial Products</h3>
+                        <p>Manufacturing systems, automation, analytics platforms</p>
+                        <ul class="tier-features">
+                            <li>Factory Automation</li>
+                            <li>IoT Analytics Hubs</li>
+                            <li>Industrial Controls</li>
+                        </ul>
+                        <span class="tier-arrow">→</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Company Statistics -->
+            <div class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Enterprise Clients</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Support Available</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Sections -->
+    <section id="domestic" class="section">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h2>Domestic Solutions</h2>
+                    <p>Smart technology for modern homes and residential properties</p>
+                </div>
+                <div class="section-actions">
+                    <div class="search-filter">
+                        <input type="text" id="domestic-search" class="form-control" placeholder="Search products..." onkeyup="filterProducts('domestic')">
+                        <select id="domestic-filter" class="form-control" onchange="filterProducts('domestic')">
+                            <option value="">All Categories</option>
+                            <option value="automation">Automation</option>
+                            <option value="security">Security</option>
+                        </select>
+                    </div>
+                    <button class="btn btn--primary admin-only hidden" onclick="openProductModal('domestic')">Add Product</button>
+                </div>
+            </div>
+            <div id="domestic-products" class="products-grid"></div>
+        </div>
+    </section>
+
+    <section id="commercial" class="section">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h2>Commercial Solutions</h2>
+                    <p>Enterprise systems for business growth and productivity</p>
+                </div>
+                <div class="section-actions">
+                    <div class="search-filter">
+                        <input type="text" id="commercial-search" class="form-control" placeholder="Search products..." onkeyup="filterProducts('commercial')">
+                        <select id="commercial-filter" class="form-control" onchange="filterProducts('commercial')">
+                            <option value="">All Categories</option>
+                            <option value="networking">Networking</option>
+                            <option value="retail">Retail</option>
+                        </select>
+                    </div>
+                    <button class="btn btn--primary admin-only hidden" onclick="openProductModal('commercial')">Add Product</button>
+                </div>
+            </div>
+            <div id="commercial-products" class="products-grid"></div>
+        </div>
+    </section>
+
+    <section id="industrial" class="section">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h2>Industrial Solutions</h2>
+                    <p>Heavy-duty systems for industrial operations and manufacturing</p>
+                </div>
+                <div class="section-actions">
+                    <div class="search-filter">
+                        <input type="text" id="industrial-search" class="form-control" placeholder="Search products..." onkeyup="filterProducts('industrial')">
+                        <select id="industrial-filter" class="form-control" onchange="filterProducts('industrial')">
+                            <option value="">All Categories</option>
+                            <option value="automation">Automation</option>
+                            <option value="analytics">Analytics</option>
+                        </select>
+                    </div>
+                    <button class="btn btn--primary admin-only hidden" onclick="openProductModal('industrial')">Add Product</button>
+                </div>
+            </div>
+            <div id="industrial-products" class="products-grid"></div>
+        </div>
+    </section>
+
+    <!-- Appointments Section -->
+    <section id="appointments" class="section">
+        <div class="container">
+            <h2>Book an Appointment</h2>
+            <p class="section-description">Schedule a consultation with our technical experts</p>
+            <div class="appointment-grid">
+                <div class="calendar-container">
+                    <h3>Select Date & Time</h3>
+                    <div class="calendar-nav">
+                        <button class="btn btn--outline" onclick="changeMonth(-1)">‹ Previous</button>
+                        <span id="calendar-month-year"></span>
+                        <button class="btn btn--outline" onclick="changeMonth(1)">Next ›</button>
+                    </div>
+                    <div id="calendar"></div>
+                    <div id="time-slots" class="time-slots hidden"></div>
+                </div>
+                <div class="booking-form-container">
+                    <form id="booking-form" class="booking-form hidden">
+                        <h3>Appointment Details</h3>
+                        <div class="form-group">
+                            <label class="form-label">Full Name *</label>
+                            <input type="text" class="form-control" name="customerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email Address *</label>
+                            <input type="email" class="form-control" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone Number *</label>
+                            <input type="tel" class="form-control" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Service Type *</label>
+                            <select class="form-control" name="serviceType" required>
+                                <option value="">Select a service</option>
+                                <option value="Installation Consultation">Installation Consultation</option>
+                                <option value="System Upgrade">System Upgrade</option>
+                                <option value="Site Assessment">Site Assessment</option>
+                                <option value="Technical Support">Technical Support</option>
+                                <option value="Product Demo">Product Demo</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Additional Notes</label>
+                            <textarea class="form-control" name="notes" rows="3" placeholder="Any specific requirements or details..."></textarea>
+                        </div>
+                        <div class="selected-slot">
+                            <strong>Selected: </strong><span id="selected-slot-display">Please select a date and time</span>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full-width">Book Appointment</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Assistant Section -->
+    <section id="ai-assistant" class="section">
+        <div class="container">
+            <div class="ai-hero">
+                <h2>🤖 AI Assistant - Coming Soon</h2>
+                <p>Experience the future with our intelligent AI assistant</p>
+            </div>
+            
+            <div class="ai-features-grid">
+                <div class="card">
+                    <div class="card__body">
+                        <h3>🎯 Personalized Recommendations</h3>
+                        <p>Get product suggestions tailored to your specific needs and requirements</p>
+                        <div class="status status--info">In Development</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card__body">
+                        <h3>📅 Smart Scheduling</h3>
+                        <p>Automatically schedule appointments based on your availability and preferences</p>
+                        <div class="status status--info">In Development</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card__body">
+                        <h3>🔧 Technical Support</h3>
+                        <p>Receive real-time technical support and troubleshooting assistance</p>
+                        <div class="status status--info">In Development</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card__body">
+                        <h3>📊 Predictive Analytics</h3>
+                        <p>Access predictive maintenance insights and performance analytics</p>
+                        <div class="status status--info">In Development</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ai-integration-info">
+                <div class="card">
+                    <div class="card__body">
+                        <h3>Integration Documentation</h3>
+                        <p>For developers looking to integrate with our future AI platform:</p>
+                        <ul>
+                            <li>RESTful API endpoints for chatbot integration</li>
+                            <li>Webhook support for real-time notifications</li>
+                            <li>Custom training data upload capabilities</li>
+                            <li>Advanced analytics and reporting tools</li>
+                        </ul>
+                        <button class="btn btn--outline">Download API Docs</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <div class="contact-item">
+                        <strong>Email:</strong> info@techsolutions.com
+                    </div>
+                    <div class="contact-item">
+                        <strong>Phone:</strong> (555) 123-4567
+                    </div>
+                    <div class="contact-item">
+                        <strong>Address:</strong> 123 Technology Drive, Innovation City, TC 12345
+                    </div>
+                    <div class="contact-item">
+                        <strong>Business Hours:</strong> Mon-Fri 9AM-6PM
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-control" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Subject</label>
+                            <input type="text" class="form-control" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-control" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Dashboard -->
+    <section id="admin-dashboard" class="section admin-only hidden">
+        <div class="container">
+            <h2>Client Dashboard</h2>
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-products">0</div>
+                    <div class="stat-label">Total Products</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="total-appointments">0</div>
+                    <div class="stat-label">Appointments</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="total-inquiries">0</div>
+                    <div class="stat-label">Inquiries</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="total-orders">0</div>
+                    <div class="stat-label">Orders</div>
+                </div>
+            </div>
+
+            <div class="dashboard-tabs">
+                <button class="tab-btn active" onclick="showAdminTab('products')">Products</button>
+                <button class="tab-btn" onclick="showAdminTab('appointments')">Appointments</button>
+                <button class="tab-btn" onclick="showAdminTab('inquiries')">Inquiries</button>
+                <button class="tab-btn" onclick="showAdminTab('orders')">Orders</button>
+                <button class="tab-btn" onclick="showAdminTab('questionnaires')">Forms</button>
+            </div>
+
+            <div id="admin-products" class="admin-tab active">
+                <div class="admin-section-header">
+                    <h3>Product Management</h3>
+                    <select id="product-tier-filter" class="form-control" style="width: 200px;">
+                        <option value="">All Tiers</option>
+                        <option value="domestic">Domestic</option>
+                        <option value="commercial">Commercial</option>
+                        <option value="industrial">Industrial</option>
+                    </select>
+                </div>
+                <div id="admin-products-list" class="admin-list"></div>
+            </div>
+
+            <div id="admin-appointments" class="admin-tab">
+                <h3>Appointment Management</h3>
+                <div id="admin-appointments-list" class="admin-list"></div>
+            </div>
+
+            <div id="admin-inquiries" class="admin-tab">
+                <h3>Customer Inquiries</h3>
+                <div id="admin-inquiries-list" class="admin-list"></div>
+            </div>
+
+            <div id="admin-orders" class="admin-tab">
+                <h3>Order Management</h3>
+                <div id="admin-orders-list" class="admin-list"></div>
+            </div>
+
+            <div id="admin-questionnaires" class="admin-tab">
+                <h3>Questionnaire Templates</h3>
+                <button class="btn btn--primary" onclick="openQuestionnaireModal()">Create Template</button>
+                <div id="admin-questionnaires-list" class="admin-list"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Login</h3>
+                <button class="modal-close" onclick="closeLoginModal()">&times;</button>
+            </div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-control" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" required>
+                </div>
+                <button type="submit" class="btn btn--primary btn--full-width">Login</button>
+            </form>
+            <div class="login-hint">
+                <small>Demo credentials:<br>
+                Admin: username "admin" / password "admin123"<br>
+                Client: username "client" / password "client123"</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div id="product-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="product-modal-title">Add Product</h3>
+                <button class="modal-close" onclick="closeProductModal()">&times;</button>
+            </div>
+            <form id="product-form">
+                <div class="form-group">
+                    <label class="form-label">Product Name</label>
+                    <input type="text" class="form-control" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-control" name="description" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Price</label>
+                    <input type="number" class="form-control" name="price" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Category</label>
+                    <input type="text" class="form-control" name="category" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Specifications</label>
+                    <textarea class="form-control" name="specifications" rows="2" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Image URL</label>
+                    <input type="url" class="form-control" name="imageUrl" placeholder="https://example.com/image.jpg">
+                </div>
+                <input type="hidden" name="tier">
+                <input type="hidden" name="id">
+                <div class="modal-actions">
+                    <button type="button" class="btn btn--secondary" onclick="closeProductModal()">Cancel</button>
+                    <button type="submit" class="btn btn--primary">Save Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Order/Inquiry Modal -->
+    <div id="order-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="order-modal-title">Product Inquiry</h3>
+                <button class="modal-close" onclick="closeOrderModal()">&times;</button>
+            </div>
+            <div class="order-tabs">
+                <button class="order-tab-btn active" onclick="showOrderTab('inquiry')">Make Inquiry</button>
+                <button class="order-tab-btn" onclick="showOrderTab('order')">Place Order</button>
+            </div>
+            <form id="order-form">
+                <div id="inquiry-tab" class="order-tab-content active">
+                    <div class="form-group">
+                        <label class="form-label">Your Name</label>
+                        <input type="text" class="form-control" name="customerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Message</label>
+                        <textarea class="form-control" name="message" rows="3" required></textarea>
+                    </div>
+                    <div id="custom-fields"></div>
+                </div>
+                <div id="order-tab" class="order-tab-content">
+                    <div class="form-group">
+                        <label class="form-label">Your Name</label>
+                        <input type="text" class="form-control" name="orderCustomerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" name="orderEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" name="orderPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Quantity</label>
+                        <input type="number" class="form-control" name="quantity" min="1" value="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Delivery Address</label>
+                        <textarea class="form-control" name="deliveryAddress" rows="3" required></textarea>
+                    </div>
+                    <div class="order-summary">
+                        <div class="summary-item">
+                            <span>Product:</span>
+                            <span id="order-product-name"></span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Unit Price:</span>
+                            <span id="order-unit-price"></span>
+                        </div>
+                        <div class="summary-item total">
+                            <span>Total Amount:</span>
+                            <span id="order-total-amount"></span>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="productId">
+                <input type="hidden" name="productName">
+                <input type="hidden" name="productPrice">
+                <div class="modal-actions">
+                    <button type="button" class="btn btn--secondary" onclick="closeOrderModal()">Cancel</button>
+                    <button type="submit" class="btn btn--primary" id="order-submit-btn">Submit Inquiry</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>TechSolutions Enterprise</h4>
+                    <p>Leading provider of technology solutions for domestic, commercial, and industrial applications with 15+ years of experience.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Information</h4>
+                    <p>Email: info@techsolutions.com</p>
+                    <p>Phone: (555) 123-4567</p>
+                    <p>Address: 123 Technology Drive</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Future AI Integration</h4>
+                    <p>🚀 Next-generation AI assistant</p>
+                    <p>🔮 Predictive analytics platform</p>
+                    <p>🤖 Automated customer support</p>
+                    <p>📊 Real-time business insights</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TechSolutions Enterprise. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
